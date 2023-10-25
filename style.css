@@ -1,0 +1,89 @@
+/* Classes */
+
+/* Erros */
+.error{
+  background-color: red;
+  color: yellow;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.message{
+  background-color: rgb(100, 209, 27);
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Apply styles to the <h1> element */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f0f0f0; /* Change the color to your preference */
+  }
+  
+  /* Apply styles to the <footer> element */
+  footer {
+    background-color: #f0f0f0; /* Change the background color to your preference */
+    text-align: center;
+    padding: 10px;
+}
+
+/* Apply styles to the <header> element */
+header {
+    text-align: center;
+    background-color: #333; /* Change the background color to your preference */
+    color: #fff; /* Change the text color to your preference */
+    padding: 20px;
+}
+
+/* Apply styles to the <main> element */
+main {
+      text-align: center;
+    margin: 20px;
+  }
+  
+  /* Apply styles to all <input> elements */
+  input {
+    /* width: 100%; */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Add a border around the input fields */
+  }
+  
+  /* Apply styles to all <ul> and <ol> elements (lists) */
+  ul,
+  ol {
+    list-style: disc; /* Use a filled circle as the list marker */
+    margin-left: 20px; /* Add some left margin to the lists */
+  }
+  
+/* Define um estilo básico para a tabela */
+table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Define a cor de fundo das células de cabeçalho */
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Define o estilo das células de cabeçalho */
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Define a cor de fundo das linhas alternadas */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Define um estilo de hover para realçar as linhas quando o mouse passar por cima */
+  tr:hover {
+    background-color: #ddd;
+  }
+  
