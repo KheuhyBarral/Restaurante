@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Montserrat:wght@700&display=swap');
+
+
 /* Classes */
 
 /* Erros */
 .error{
-  background-color: red;
-  color: yellow;
+  background-color: yellow;
+  color: red;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -14,49 +17,238 @@
   margin-bottom: 20px;
 }
 
-/* Apply styles to the <h1> element */
-h1 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #f0f0f0; /* Change the color to your preference */
-  }
-  
-  /* Apply styles to the <footer> element */
-  footer {
-    background-color: #f0f0f0; /* Change the background color to your preference */
-    text-align: center;
-    padding: 10px;
+/* Geral */
+
+/* LogIn */
+.logIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
-/* Apply styles to the <header> element */
+.logIn ul{
+  margin: 0;
+  padding: 0;
+}
+
+.logIn form{
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.logIn form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.logIn form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.logIn form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.logIn form input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logIn input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Editar/Criar usuário */
+
+.userEdit {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.userEdit h2{
+  text-transform: uppercase; 
+}
+
+.userEdit ul{
+  margin: 0;
+  padding: 0;
+}
+
+.userEdit .alert{
+  padding: 20px;
+  color:#0307fc
+}
+
+.userEdit legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.userEdit label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.userEdit input,
+ select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.userEdit input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.userEdit input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Cabeçario */
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
-    background-color: #333; /* Change the background color to your preference */
-    color: #fff; /* Change the text color to your preference */
+    background-color: rgba(189,44,49,1); 
+    color: #fff; 
     padding: 20px;
-}
-
-/* Apply styles to the <main> element */
-main {
-      text-align: center;
-    margin: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-height: 100px;
   }
   
-  /* Apply styles to all <input> elements */
+  header h1 {
+    margin-left: 20px;
+    font-family: 'Ephesis', cursive;
+    font-size: 56px;
+    font-weight: bold;
+    color: #fcd303;
+  }
+  header .logo{
+    justify-content: left;
+  }
+  
+  header .menu ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+header .menu ul a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header .menu li {
+  margin-right: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+
+/* Main */
+
+
+main {
+    text-align: center;
+    margin: 130px 20px 50px 20px;
+    
+  }
+
+  
+/* Rodapé */
+footer {
+  background-color: rgba(189,44,49,1); 
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-height: 20px;
+}
+
+
+
+
   input {
     /* width: 100%; */
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc; /* Add a border around the input fields */
+    border: 1px solid #ccc; 
   }
+
   
-  /* Apply styles to all <ul> and <ol> elements (lists) */
+  
+
   ul,
   ol {
-    list-style: disc; /* Use a filled circle as the list marker */
-    margin-left: 20px; /* Add some left margin to the lists */
+    list-style: none; 
+    margin-left: 20px; 
   }
   
+.admin {
+  width: 100% - 20px;
+  min-height: 80vh;
+  padding: 0px 10px 10px 10px;
+  display: flex;
+}
+.admin .adminMenu{
+  width: 20%;
+  text-align: center;
+  align-items: center;
+}
+
+.admin .adminMenu ul a{
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+.admin .adminMenu ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.admin .adminMenu ul .linha{
+  border-top: solid;
+  padding: 0;
+}
+
+.admin .adminContent{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Define um estilo básico para a tabela */
 table {
     font-family: Arial, sans-serif;
@@ -86,4 +278,11 @@ table {
   tr:hover {
     background-color: #ddd;
   }
+  
+  *{
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+
   
