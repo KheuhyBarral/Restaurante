@@ -73,7 +73,7 @@ class Util
         header('Location:/index.php');
       }
     } else {
-      header('Location:index.php?errormessage=Email%20ou%20Senha%20inválidos!');
+      header('Location:login.php?errormessage=Email%20ou%20Senha%20inválidos!');
     }
 
     R::close();
@@ -87,6 +87,12 @@ class Util
 
 
       R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+
+      if(R::findOne('users', ' email = ?', [$e])){
+        header('Location:/admin/index.php?index=1&errormessage=Este%20email%20já%20existe!');
+        return;
+      }
+
 
       $u = R::dispense("users");
       $u->email = $e;
@@ -131,6 +137,11 @@ class Util
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
     if ($_SESSION['gerente'] == true) {
       require_once("r.class.php");
+
+      if(R::findOne('users', ' email = ?', [$e])){
+        header('Location:/admin/index.php?index=21&id=' . $id . '&errormessage=Este%20email%20já%20existe!');
+        return;
+      }
 
 
       R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
