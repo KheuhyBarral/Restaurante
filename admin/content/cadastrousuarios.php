@@ -14,7 +14,12 @@
         <li><label for="senha">Senha: </label> <input type="password" name="password" id="password"></li>
         <li><label for="cpf">CPF: </label> <input type="text" name="cpf" id="cpf"></li>
         <li><label for="descricao">Descrição: </label> <input type="text" name="descricao" id="descricao"></li> 
-        <li><label for="auxilio">Auxílio: </label> <input type="checkbox" name="auxilio" id="auxilio"></li>
+        <li><label for="auxilio">Auxílio: </label>
+                    <select id="auxilio" name="auxilio" required>
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                    </select> 
+        </li>
         <li><label for="pin">PIN(4 dígitos): </label> <input type="password" name="pin" id="pin" maxlength="4" minlength="4"></li>
 
         <?php 
