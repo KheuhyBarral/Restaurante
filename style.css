@@ -9,12 +9,17 @@
   color: red;
   padding: 20px;
   margin-bottom: 20px;
+  border: solid;
+  border-color: black;
+  
 }
 .message{
   background-color: rgb(100, 209, 27);
   color: rgb(255, 255, 255);
   padding: 20px;
   margin-bottom: 20px;
+  border: solid;
+  border-color: black;
 }
 
 /* Geral */
@@ -130,7 +135,7 @@
 }
 
 /* Cabeçario */
-header {
+header .head{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -141,38 +146,52 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
+    min-height: 70px;
     max-height: 100px;
   }
   
-  header h1 {
+  header .head a {
+    text-decoration: none;
+  }
+
+  header .head h1 {  
     margin-left: 20px;
     font-family: 'Ephesis', cursive;
     font-size: 56px;
     font-weight: bold;
     color: #fcd303;
   }
-  header .logo{
+  header .head .logo{
     justify-content: left;
   }
   
-  header .menu ul{
+  header .head .menu ul{
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
 }
 
-header .menu ul a {
+header .head .menu ul a {
   color: inherit;
   text-decoration: none;
 }
 
-header .menu li {
+header .head .menu li {
   margin-right: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 21px;
+}
+
+header .info{
+  bottom: 20px;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  position: fixed;
 }
 
 /* Main */

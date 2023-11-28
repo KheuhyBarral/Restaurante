@@ -73,13 +73,13 @@ class Util
         header('Location:/index.php');
       }
     } else {
-      header('Location:index.php?message=Email%20ou%20Senha%20inválidos!');
+      header('Location:index.php?errormessage=Email%20ou%20Senha%20inválidos!');
     }
 
     R::close();
   }
 
-  public static function criar($nome, $e, $p, $cpf, $desc,$auxilio, $pin, $cargo)
+  public static function criar($nome, $e, $p, $cpf, $desc, $auxilio, $pin, $cargo)
   {
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
     if ($_SESSION['gerente'] == true) {
@@ -126,7 +126,7 @@ class Util
     }
   }
 
-  public static function editar($id, $nome, $e, $p, $cpf, $desc, $pin, $cargo)
+  public static function editar($id, $nome, $e, $p, $cpf, $desc, $auxilio, $pin, $cargo)
   {
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
     if ($_SESSION['gerente'] == true) {
@@ -213,6 +213,7 @@ class Util
     $r = "<table><tr>
                 <th>Id</th>
                 <th>Nome</th>
+                <th>Cargo</th>
                 <th>Editar</th>
                 <th>Apagar</th>
             </tr>";
@@ -220,8 +221,24 @@ class Util
       $r = $r .
         "<tr>
         <td>" . $u->id . "</td>
-        <td>" . $u->nome . "</td>
-        <td><a href='/admin/index.php?index=21&id=" . $u->id . "'> <img src=\"/img/lapis.svg\" alt=\"Editar id = ". $u->id ."\"></a></td>
+        <td>" . $u->nome . "</td>";
+        
+        if($u->isAdmin){
+          $r .= "<td>Admin</td>";
+        }
+        else if($u->isGerente){
+          $r .= "<td>Gerente</td>";
+        }
+        else if($u->isCaixa){
+          $r .= "<td>Caixa</td>";
+        }
+        else{
+          $r .= "<td>Cliente</td>";
+
+        }
+
+
+        $r = $r ."<td><a href='/admin/index.php?index=21&id=" . $u->id . "'> <img src=\"/img/lapis.svg\" alt=\"Editar id = ". $u->id ."\"></a></td>
         <td><a href='/admin/deleteuser.php?id=" . $u->id . "'> <img src=\"/img/lixo.svg\" alt=\"Deletar usuário id = ". $u->id ."\"></a></td>
     </tr>";
     }

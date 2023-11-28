@@ -28,7 +28,7 @@
         <li><label for="cpf">CPF: </label> <input required type="text" name="cpf" id="cpf" value="<?php echo $u->cpf?>"></li>
         <li><label for="descricao">Descrição: </label> <input required type="textarea" name="descricao" id="descricao" value="<?php echo $u->descricao?>"></li> 
         <li><label for="auxilio">Auxílio: </label> <input type="checkbox" name="auxilio" id="auxilio" <?php if($u->auxilio) echo "checked"?>></li>
-        <li><label for="pin">PIN(4 dígitos): </label> <input type="password" name="pin" id="pin"></li>
+        <li><label for="pin">PIN(4 dígitos): </label> <input type="password" name="pin" id="pin" maxlength="4" minlength="4"></li>
         
             <?php 
             if(Util::isAdmin()){

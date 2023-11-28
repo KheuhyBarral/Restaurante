@@ -15,7 +15,7 @@
         <li><label for="cpf">CPF: </label> <input type="text" name="cpf" id="cpf"></li>
         <li><label for="descricao">Descrição: </label> <input type="text" name="descricao" id="descricao"></li> 
         <li><label for="auxilio">Auxílio: </label> <input type="checkbox" name="auxilio" id="auxilio"></li>
-        <li><label for="pin">PIN(4 dígitos): </label> <input type="password" name="pin" id="pin"></li>
+        <li><label for="pin">PIN(4 dígitos): </label> <input type="password" name="pin" id="pin" maxlength="4" minlength="4"></li>
 
         <?php 
             if(Util::isAdmin()){

@@ -6,7 +6,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
             <h2>Menu</h2>
             <ul>
                 <li class="linha"></li>
-                <a href="/admin/index.php?index=1"><li>Cadastro de usuários</li></a>
+                <a href="/admin/index.php?index=1"><li>Cadastro de usuários / Clientes</li></a>
                 <li class="linha"></li>
                 <a href="/admin/index.php?index=2"><li>Lista de usuários</li></a>
                 <li class="linha"></li>
