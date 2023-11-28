@@ -73,7 +73,7 @@ class Util
         header('Location:/index.php');
       }
     } else {
-      header('Location:index.php?errormessage=Email%20ou%20Senha%20inválidos!');
+      header('Location:login.php?errormessage=Email%20ou%20Senha%20inválidos!');
     }
 
     R::close();
@@ -88,6 +88,14 @@ class Util
 
       R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
 
+      $t = R::findOne('users', ' email = ?', [$e]);
+
+      if(isset($t)){
+        header('Location:/admin/index.php?index=1&errormessage=Este%20email%20já%20existe!');
+        return;
+      }
+
+
       $u = R::dispense("users");
       $u->email = $e;
       $u->password = md5($p . '__');
@@ -95,7 +103,12 @@ class Util
       $u->nome = $nome;
       $u->cpf = $cpf;
       $u->descricao = $desc;
-      $u->auxilo = $auxilio;
+      if($auxilio == 1){
+        $u->auxilo = true;
+      }
+      else{
+        $u->auxilo = false;
+      }
       $u->pin = $pin;
 
       $u->isCaixa = false;
@@ -131,8 +144,7 @@ class Util
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
     if ($_SESSION['gerente'] == true) {
       require_once("r.class.php");
-
-
+      
       R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
 
       $u = R::load("users", $id );
@@ -145,7 +157,12 @@ class Util
       $u->nome = $nome;
       $u->cpf = $cpf;
       $u->descricao = $desc;
-      $u->auxilo = $auxilio;
+      if($auxilio == 1){
+        $u->auxilo = true;
+      }
+      else{
+        $u->auxilo = false;
+      }
       if($pin){
         $u->pin = $pin;
       }
