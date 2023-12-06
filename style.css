@@ -45,6 +45,7 @@
   border-radius: 5px;
 }
 
+
 .logIn form h2 {
   margin-bottom: 20px;
   text-align: center;
@@ -87,6 +88,7 @@
   margin: 0 auto;
   width: 300px;
 }
+
 
 .userEdit h2{
   text-transform: uppercase; 
@@ -198,10 +200,15 @@ header .info{
 
 
 main {
-    text-align: center;
-    margin: 130px 20px 50px 20px;
-    
-  }
+  text-align: center;
+  margin: 130px 20px 50px 20px; 
+}
+
+main h2 {
+  color: #333; 
+  font-size: 24px; 
+  margin-bottom: 20px; 
+}
 
   
 /* Rodapé */
@@ -303,5 +310,30 @@ table {
     letter-spacing: 3px;
     margin: 0;
   }
+
+  /*  notícias */
+.news {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.news h2 {
+  color: #333;
+}
+
+.news div {
+  margin-top: 10px;
+  color: #555;
+}
+
+.news em {
+  color: #777;
+  font-style: italic;
+}
 
   

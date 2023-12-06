@@ -14,8 +14,8 @@
         <li><label for="senha">Senha: </label> <input type="password" name="password" id="password"></li>
         <li><label for="cpf">CPF: </label> <input type="text" name="cpf" id="cpf"></li>
         <li><label for="descricao">Descrição: </label> <input type="text" name="descricao" id="descricao"></li> 
-        <li><label for="auxilio">Auxílio: </label>
-                    <select id="auxilio" name="auxilio" required>
+        <li><label for="carteira">Carteira: </label>
+                    <select id="carteira" name="carteira" required>
                         <option value="1">Sim</option>
                         <option value="0">Não</option>
                     </select> 

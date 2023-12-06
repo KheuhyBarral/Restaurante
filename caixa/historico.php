@@ -1,10 +1,3 @@
-<?php
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/util.class.php";
-    if(!Util::isCliente()){
-        header('Location:/logIn.php?errormessage=Você%20não%20é%20cliente.');
-    }
-
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,13 +11,18 @@
     include($_SERVER["DOCUMENT_ROOT"] . "/base/cabecario.inq.php")
     ?>
     <main>
-        <h2>Seu histórico de compras</h2>
-        <?php
-        require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/compra.class.php";
+    <div>
+  <?php
+  require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/compra.class.php";
+  require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/util.class.php";
 
-        $compras = Compra::comprasCliente($_SESSION["id"]);
+  if(isset($_GET["id"])){
 
-        $r = "<table><tr>
+    $compras = Compra::comprasCliente($_GET["id"]);
+    echo '<a href="historico.php"><input type="submit" value="Voltar"></a>';
+    echo "<h2>Histórico de ". Util::getClient($_GET["id"]) ."</h2>";
+    
+    $r = "<table><tr>
         <th>Data</th>
         <th>Vendedor</th>
         <th>Valor total</th>
@@ -47,16 +45,35 @@
       $r .= "<td>" . $vendedor . "</td>"; 
       $r .= "<td>R$ " . number_format($valor_total,2,",",".") . "</td>"; 
       $r .= "<td>R$ " . number_format($valor_pago,2,",",".") . "</td>"; 
-      $r .= "<td>R$ " . number_format($divida,2,",",".") . "</td>"; 
+      $r .= "<td>R$ " . number_format($divida,2,",",".") . "</td> "; 
       $r .= "<td><a href='/detalhescompra.php?id=" . $c->id . "'> <img src=\"/img/lapis.svg\"></a></td></tr>";
     }
     $r .= "<td>Total</td>
     <td></td>
     <td></td>
     <td></td>
-    <td>R$ " . number_format($total,2,",",".") ."</td> <td></td></table>";
+    <td>R$ " . number_format($total,2,",",".") ."</td><td></td></table>";
     echo $r;
-        ?>
+
+    echo '<form action="/caixa/paydebts.php" method="post">
+    <input type="hidden" name="cliente" value="'. $_GET["id"] . '">
+    <label for="valor">Valor(R$): </label><input type="number" name="valor" step="0.01" id="valor" value="'. $total.'" max="'. $total . '">
+    <input type="submit" value="Quitar">
+    </form>';
+
+
+  
+  }else{
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/compra.class.php";
+    echo '<a href="index.php"><input type="submit" value="Voltar"></a>';
+    echo "<h2>Clientes</h2>";
+
+    echo Compra::clientes();
+  }
+
+  ?>
+
+</div>
     </main>
     <?php
     include($_SERVER["DOCUMENT_ROOT"] . "/base/rodape.inq.php")
