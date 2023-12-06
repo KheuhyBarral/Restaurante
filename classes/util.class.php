@@ -46,12 +46,15 @@ class Util
 
     return isset($_SESSION['cliente']) && $_SESSION['cliente'] == true;
   }
+
   
   public static function autenticar($e, $p)
   {
     require_once "r.class.php";
 
-    R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+    if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
 
 
     $u = R::findOne('users', ' email = ? AND password = ? ', [$e, md5($p . '__')]);
@@ -60,6 +63,8 @@ class Util
     if (isset($u)) {
       session_start();
       $_SESSION['email'] = $u['email'];
+      $_SESSION['id'] = $u['id'];
+      $_SESSION['nome'] = $u['nome'];
       $_SESSION['admin'] = $u['isAdmin'];
       $_SESSION['gerente'] = $u['isGerente'];
       $_SESSION['caixa'] = $u['isCaixa'];
@@ -79,14 +84,16 @@ class Util
     R::close();
   }
 
-  public static function criar($nome, $e, $p, $cpf, $desc, $auxilio, $pin, $cargo)
+  public static function criar($nome, $e, $p, $cpf, $desc, $carteira, $pin, $cargo)
   {
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
     if ($_SESSION['gerente'] == true) {
       require_once("r.class.php");
 
 
-      R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
 
       $t = R::findOne('users', ' email = ?', [$e]);
 
@@ -103,13 +110,13 @@ class Util
       $u->nome = $nome;
       $u->cpf = $cpf;
       $u->descricao = $desc;
-      if($auxilio == 1){
-        $u->auxilo = true;
+      if($carteira == 1){
+        $u->carteira = true;
       }
       else{
-        $u->auxilo = false;
+        $u->carteira = false;
       }
-      $u->pin = $pin;
+      $u->pin = md5($pin . '__');
 
       $u->isCaixa = false;
       $u->isGerente = false;
@@ -139,13 +146,15 @@ class Util
     }
   }
 
-  public static function editar($id, $nome, $e, $p, $cpf, $desc, $auxilio, $pin, $cargo)
+  public static function editar($id, $nome, $e, $p, $cpf, $desc, $carteira, $pin, $cargo)
   {
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
     if ($_SESSION['gerente'] == true) {
       require_once("r.class.php");
       
-      R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
 
       $u = R::load("users", $id );
 
@@ -157,14 +166,14 @@ class Util
       $u->nome = $nome;
       $u->cpf = $cpf;
       $u->descricao = $desc;
-      if($auxilio == 1){
-        $u->auxilo = true;
+      if($carteira == 1){
+        $u->carteira = true;
       }
       else{
-        $u->auxilo = false;
+        $u->carteira = false;
       }
       if($pin){
-        $u->pin = $pin;
+        $u->pin = md5($pin . '__');
       }
 
       if($_SESSION['admin']){     //Evita que gerentes alterem o cargo  
@@ -205,13 +214,38 @@ class Util
     }
     require_once("r.class.php");
 
-    R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+    if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
 
     R::trash('users', $id);
 
     R::close();
 
     header('Location:/admin?index=2&message=Usuario%20deletado!');
+  }
+
+  public static function checkPIN($id, $pin){
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();
+
+    if ($_SESSION['caixa'] != 1) {
+      header('Location:index.php?errormessage=Você%20não%20é%20caixa.');
+    }
+    require_once("r.class.php");
+
+    if (!R::testConnection()) {
+      R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+    }
+    
+    $u = R::findOne('users', ' id = ? AND pin = ? ', [$id, md5($pin . '__')]);
+
+    R::close();
+
+    if(isset($u) && $u->id != 0){
+      return true;
+    }
+    return false;
+
   }
 
   public static function tabelaUsuarios()
@@ -223,7 +257,9 @@ class Util
     }
     require_once("r.class.php");
 
-    R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+    if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
 
     $users = R::findAll("users");
 
@@ -262,6 +298,51 @@ class Util
 
     $r = $r . "</table>";
     return $r;
+
+    R::close();
+  }
+
+  public static function getClient($id)
+  {
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();
+    
+    require_once("r.class.php");
+
+    if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
+
+    $c = R::findOne("users", " id = ? ", [$id]);
+
+    if(isset($c))
+    {
+      return $c->nome;
+    }
+    return "não encontrado!";
+
+    R::close();
+
+  }
+
+  public static function isCarteira($id){
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();
+
+    if ($_SESSION['caixa'] != 1) {
+      header('Location:index.php?errormessage=Você%20não%20é%20caixa.');
+    }
+    require_once("r.class.php");
+
+    if (!R::testConnection()) {
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+      }
+
+    $c = R::findOne("users", " id = ? ", [$id]);
+
+    if(isset($c))
+    {
+      return $c->carteira;
+    }
+    return false;
 
     R::close();
   }

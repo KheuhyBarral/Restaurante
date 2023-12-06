@@ -4,4 +4,4 @@
         header('Location:/logIn.php?errormessage=Você%20não%20é%20gerente.');
     }
     
-    Util::criar($_POST["nome"], $_POST["email"], $_POST["password"], $_POST["cpf"], $_POST["descricao"],$_POST["auxilio"], $_POST["pin"], $_POST["cargo"]);
+    Util::criar($_POST["nome"], $_POST["email"], $_POST["password"], $_POST["cpf"], $_POST["descricao"],$_POST["carteira"], $_POST["pin"], $_POST["cargo"]);

@@ -11,7 +11,7 @@
     include("base/cabecario.inq.php")
     ?>
     <main>
-        
+        <h2>Preços</h2>
         <?php include("base/preco.inq.php")?>
     </main>
     <?php

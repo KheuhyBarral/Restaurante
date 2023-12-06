@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="submit"] {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  background-color: rgba(189,44,49,1);;
+  color: white;
+  cursor: pointer;
+}
+
+h2 {
+  color: rgba(189,44,49,1);;
+}
+
+.caixa{
+  display: flex;
+  width: 100%;
+}
+.caixa div{
+  width: 100%;
+  margin: 10px;
+}
