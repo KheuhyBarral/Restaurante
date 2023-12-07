@@ -12,7 +12,7 @@
         <li><label for="nome">Nome: </label> <input type="text" name="nome" id="nome"></li>
         <li><label for="email">Email: </label> <input type="text" name="email" id="email"></li>
         <li><label for="senha">Senha: </label> <input type="password" name="password" id="password"></li>
-        <li><label for="cpf">CPF: </label> <input type="text" name="cpf" id="cpf"></li>
+        <li><label for="cpf">CPF: </label> <input type="text" name="cpf" id="cpf" maxlength="11" minlength="11"></li>
         <li><label for="descricao">Descrição: </label> <input type="text" name="descricao" id="descricao"></li> 
         <li><label for="carteira">Carteira: </label>
                     <select id="carteira" name="carteira" required>

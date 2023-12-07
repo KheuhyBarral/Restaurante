@@ -25,7 +25,7 @@
         <li><label for="nome">Nome: </label> <input required type="text" name="nome" id="nome"  value="<?php echo $u->nome?>"></li>
         <li><label for="email">Email: </label> <input required type="text" name="email" id="email" value="<?php echo $u->email?>"></li>
         <li><label for="senha">Senha: </label> <input type="password" name="password" id="password"></li>
-        <li><label for="cpf">CPF: </label> <input required type="text" name="cpf" id="cpf" value="<?php echo $u->cpf?>"></li>
+        <li><label for="cpf">CPF: </label> <input required type="text" name="cpf" id="cpf" maxlength="11" minlength="11" value="<?php echo $u->cpf?>"></li>
         <li><label for="descricao">Descrição: </label> <input required type="textarea" name="descricao" id="descricao" value="<?php echo $u->descricao?>"></li> 
         <li><label for="carteira">Carteira: </label>
                     <select id="carteira" name="carteira" required>
