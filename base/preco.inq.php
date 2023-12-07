@@ -17,7 +17,7 @@
         "<tr>
         <td>" . $p->id . "</td>" .
         "<td>" . $p->descricao . "</td>" .
-        "<td>" . $p->valor . "</td>";
+        "<td>R$ " . $p->valor . "</td>";
       
     }
 

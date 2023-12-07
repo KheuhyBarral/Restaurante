@@ -17,7 +17,7 @@ if(!R::find("users", '1'))
     $u->cpf = "012345678910";
     $u->descricao = "Curso tec infomática turma 2021 anda de moto e carro e nao corre é gente fina de mais texto grande .php";
     $u->carteira = true;
-    $u->pin = "0123";
+    $u->pin = md5("0123" . '__');;
 
     
 
@@ -33,15 +33,26 @@ if(!R::find("users", '1'))
 
     $p = R::dispense("produtos");
 
-    $p->descricao = "Suco de caju com açucar que veio das margens do rio araguaia";
-    $p->valor = 3.59;
+    $p->descricao = "Prato feito pequeno";
+    $p->valor = 9.99;
+
+    $p2 = R::dispense("produtos");
+
+    $p2->descricao = "Prato feito grande";
+    $p2->valor = 11.99;
 
     $i = R::dispense("itens");
 
     $i->produto = $p;
-    $i->quantidade = 2;
+    $i->quantidade = 1;
+
+    $i2 = R::dispense("itens");
+
+    $i2->produto = $p2;
+    $i2->quantidade = 2;
 
     $compra->ownItensList[] = $i;
+    $compra->ownItensList[] = $i2;
 
     $compra->valor = 10000.99;
     $compra->valor_pago = 10000.99;
@@ -49,7 +60,6 @@ if(!R::find("users", '1'))
     R::store($compra);
 
     R::trash('itens', 1);
-    R::trash('produtos', 1);
     R::trash('compras', 1);
 
     R::close();
@@ -66,6 +76,20 @@ if(!R::find("users", '1'))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Casa Di Fugassa | Restaurante IFNMG</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .news{
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            width: 40vw;
+        }
+        .noticias{
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: center;
+
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -73,22 +97,38 @@ if(!R::find("users", '1'))
     ?>
     <main>
         <h2>Notícias</h2>
+        
+
+        
         <?php
         require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/news.class.php";
         if(isset($_GET["all"]) && $_GET["all"] == 1){
-            echo '<form action="index.php">
+            echo '
+            <script>
+                // Adicione este script no final da página
+                document.addEventListener("DOMContentLoaded", function() {
+                    window.scrollTo(0, 1700);
+                });
+            </script>
+            <form action="index.php">
                 <input type="hidden" name="all" value="0">
                 <input type="submit" value="Ver menos">
-            </form>';
+            </form> 
+            <div class="noticias">';
+
             echo News::allNewsList();  
+            echo '</div>';
         }else{
+            echo '<div class="noticias">';
             echo News::newsList();
+            echo '</div>';
             echo '<form action="index.php">
             <input type="hidden" name="all" value="1">
             <input type="submit" value="Ver mais">
         </form>';
         }
         ?>
+        
         
 
     </main>
